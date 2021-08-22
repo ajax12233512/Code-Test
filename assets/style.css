@@ -4,8 +4,18 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.welcome-container{
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+.container{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 100vh;
     align-items: center;
     background-image: linear-gradient(to right, rgb(82,82,82,.75), rgb(61, 144,180,.75)),  url(img/backgroundcode.jpg);/*Make sure that the url works with github pages*/
@@ -22,7 +32,21 @@
     background-color: rgb(0,0,0,.3);
     border-radius: 1em;
     padding: 2% 1%;
+    margin-top: 9%;
 }
+
+.disapear-animation{
+    animation-name: disapear;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes disapear {
+    0%{opacity: 1;}
+    100%{opacity: 0;}
+}
+
+
 
 .welcome button{
     margin-top: 1em;
@@ -47,3 +71,89 @@
     padding: 2% 4%;
     /* list-style: none; */
 }
+
+.timer-container{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    text-align: center;
+    font-size: 1.5em;
+    color: black;
+}
+
+.choice-container{
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 80%;
+    /* margin: 0 auto; */
+}
+
+.choice{
+    background-color: rgb(0,0,0,.3);
+    color: white;
+    width: 60%;
+    box-sizing: content-box;
+    padding: 1%;
+    margin: 0 2%;
+    border-radius: 2em;
+    font-size: 1.5em;
+    text-align: center;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.choice:hover{
+    border: 2px solid white;
+    background-color: grey;
+}
+
+.choice:active{
+    background-color: rgb(73, 73, 73);
+}
+
+
+
+.choice h2{
+    text-align: center;
+    color: lightgrey;
+}
+
+.choice-top{
+    display: flex;
+    justify-content: center;
+    padding: 1%;
+}
+
+.choice-bottom{
+    display: flex;
+    justify-content: center;
+    padding: 1%;
+    margin: 1%;
+}
+
+.question{
+    font-style: italic;
+    color: white;
+    font-size: 2em;
+    width: 60%;
+    text-align: center;
+}
+
+.endscreen{
+    position: absolute;
+    top: 0;
+    font-size: 10vh;   
+}
+
+.endscreen input{
+    font-size: 10vh;
+}
+
+.endscreen button{
+    font-size: 10vh;
+}
+
