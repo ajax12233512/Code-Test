@@ -29,8 +29,9 @@ function startAni(){
 }
 start.addEventListener('click', startAni);
 
+//writes the questions to the screen
 function showQuestions(){
-    // timer();
+    timer();
     timerContainer.classList.add('show');
     questionContainer.classList.add('show');
     choice1.classList.add('show');
@@ -64,6 +65,7 @@ var getUserChoice = function(e){
         numOfIncorrectAnswers++;
         console.log("Incorrect : " + numOfIncorrectAnswers);
         //Sub 30sec from timer
+        subTime();
     }
     e.stopPropagation;
     e.preventDefault;
@@ -118,19 +120,19 @@ function genQuestion(index){//index between 0 and 10 for Questions.length
 
         userScore.innerText = this.numOfCorrectAnswers + " / " + 10;
 
-        this.counter = 0;
+        //Deleted: this.counter = 0;
         this.numOfCorrectAnswers = 0;
         this.numOfIncorrectAnswers = 0;
 
         endingSlide();
+        
     }
 }
 
 function endingSlide(){
 
-        endScreen.classList.add('show');//add username intials save here
-    
 
+        endScreen.classList.add('show');//add username intials save here
 
         console.log('The counter is at: ' + counter);
 
@@ -150,28 +152,60 @@ function endingSlide(){
 }
 
 
-
+var minutes = 9;
+var seconds = 59;
 //Function for starting timer
 function timer(){
-    var minutes = 9;
-    var seconds = 10;
+ 
     var timer = setInterval(function(){
         seconds--;
         displayTimer.innerText = minutes + " : " + seconds;
         console.log(seconds);
     
-        if(seconds === 0 && minutes === 0) {
-            clearInterval(timer);             
+        if(seconds < 0 && minutes === 0) {
+            clearInterval(timer);      
+            timerContainer.classList.remove('show');
+            questionContainer.classList.remove('show');
+            choice1.classList.remove('show');
+            choice2.classList.remove('show');
+            choice3.classList.remove('show');
+            choice4.classList.remove('show');
+
+            userScore.innerText = this.numOfCorrectAnswers + " / " + 10;
+
+            this.counter = 0;
+            this.numOfCorrectAnswers = 0;
+            this.numOfIncorrectAnswers = 0;
+
+            endingSlide();       
             console.log("reached here");
-            //run end screen
-        } else if(seconds === 0) {
+        } 
+        else if(seconds < 0 && minutes > 0) 
+        {
             minutes--;
             seconds = 60;
-        } else if(seconds < 10){
+        } 
+        else if(seconds < 10)
+        {
             displayTimer.innerText = minutes + " : " + "0" + seconds;
             console.log("seconds is less than 10");
         } 
+        else if(counter > 9){
+            console.log("clear timer here");
+            clearInterval(timer);
+        }
     }, 1000);
+}
+
+//funtion for subtracting time
+function subTime(){
+    if(this.seconds < 30){
+        var remainingTime = this.seconds - 30;
+        this.minutes -= 1;
+        this.seconds = 60 + remainingTime;
+    } else {
+        this.seconds -= 30;
+    }
 }
 
 //used for adding initials and score at the end of a quiz
