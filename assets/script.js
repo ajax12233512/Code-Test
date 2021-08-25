@@ -121,6 +121,9 @@ function genQuestion(index){//index between 0 and 10 for Questions.length
         userScore.innerText = this.numOfCorrectAnswers + " / " + 10;
 
         //Deleted: this.counter = 0;
+        // this.counter = 0;
+        this.minutes = 9;
+        this.seconds = 59;
         this.numOfCorrectAnswers = 0;
         this.numOfIncorrectAnswers = 0;
 
@@ -138,6 +141,7 @@ function endingSlide(){
 
         submitScore.addEventListener('click', writeUserScore);
 
+        
         playAgain.addEventListener('click', function(){
             endScreen.classList.remove('show');
             welcome.classList.remove('hide');
@@ -147,6 +151,7 @@ function endingSlide(){
             choice3.removeEventListener('click', getUserChoice);
             choice4.removeEventListener('click', getUserChoice);
             submitScore.removeEventListener('click', writeUserScore);
+            counter = 0;
         });
     
 }
@@ -192,6 +197,7 @@ function timer(){
         } 
         else if(counter > 9){
             console.log("clear timer here");
+            console.log("Counter : " + counter)
             clearInterval(timer);
         }
     }, 1000);
